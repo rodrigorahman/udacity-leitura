@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  
 }
 
 .App-logo {
@@ -25,4 +25,46 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #F0EEEE;
+  margin: 1em 0;
+  padding: 0;   
+}
+.material-icons {
+  padding: 0;
+  margin: 0;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.mouseHands :hover {
+  cursor: pointer;
+}
+
+
+.FormError {
+  color: red;
+  font-family: Verdana;
+  font-size: 12px
+}
+.-hasError input, textarea, select{
+  border-color: red;
+  color: red;
+}
+
+.-hasError textarea {
+  border-color: red;
+  color: red;
 }

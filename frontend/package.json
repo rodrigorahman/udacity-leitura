@@ -3,14 +3,50 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "form-serialize": "^0.7.2",
+    "moment": "^2.18.1",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-form": "^1.3.0",
+    "react-icons": "^2.2.7",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.14",
+    "reactstrap": "^5.0.0-alpha.3",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "sort-by": "^1.2.0",
+    "uuid": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --setupFiles='./src/__setups__/setupTest.js' --setupTestFrameworkScriptFile=raf/polyfill.js",
+    "test:coverage": "react-scripts test --env=jsdom --setupFiles='./src/__setups__/setupTest.js' --setupTestFrameworkScriptFile=raf/polyfill.js --coverage",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,sx}",
+      "!src/domain/*",
+      "!src/index.js",
+      "!src/App.js",
+      "!src/registerServiceWorker.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "devDependencies": {
+    "core-js": "^2.5.1",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-matchers": "^4.0.1",
+    "enzyme-to-json": "^3.0.1",
+    "jest-cli": "^21.2.1",
+    "raf": "^3.3.2",
+    "redux-mock-store": "^1.3.0"
   }
 }

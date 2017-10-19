@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="modalLoading"
+  id="myModal"
+>
+  <div
+    className="lds-css ng-scope centralizado"
+    style={
+      Object {
+        "height": "200px",
+        "width": "200px",
+      }
+    }
+  >
+    <div
+      className="lds-eclipse"
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <div />
+    </div>
+  </div>
+  <div
+    className="centralizado text"
+  >
+    Carregando!
+  </div>
+</div>
+`;
