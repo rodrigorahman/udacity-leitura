@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import CategoriesPage from './categoriesList.page';
+import React, { PureComponent } from 'react';
+import CategoriesListPage from './categoriesList.page';
 import { Route } from 'react-router-dom';
 
-class CategoriesRouting extends Component {
+class CategoriesRouting extends PureComponent {
   render() {
     return [
       <Route key='home' exact path="/categories/:categoryFilter" render={( props,  history ) => 
-        <CategoriesPage history={history} {...props} />} />
+        <CategoriesListPage history={history} {...props} />} />
     ];
   }
 }

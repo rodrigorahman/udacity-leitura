@@ -2,7 +2,6 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import PropsType from 'prop-types';
 
-
 const ConfirmationComponent = props => (
   <Modal isOpen={props.modal}>
       <ModalHeader>{props.title}</ModalHeader>

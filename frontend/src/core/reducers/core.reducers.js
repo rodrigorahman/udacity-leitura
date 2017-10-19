@@ -1,6 +1,5 @@
 import { UPDATE_MESSAGE } from '../actions/core.actions'
 
-
 export const message = (state = {}, action) => {
   let { message } = action;
 

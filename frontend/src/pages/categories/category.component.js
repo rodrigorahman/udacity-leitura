@@ -185,10 +185,10 @@ class CategoryComponent extends Component {
                             <i className="material-icons md-18">
                               {currentOrderField === "voteScore" &&
                                 voteScoreOrder === "ASC" &&
-                                "keyboardarrowdown"}
+                                "keyboard_arrow_down"}
                               {currentOrderField === "voteScore" && 
                                 voteScoreOrder === "DESC" &&
-                              "keyboardarrowup"}
+                              "keyboard_arrow_up"}
                             </i>
                           </a>
                         </th>
@@ -200,13 +200,13 @@ class CategoryComponent extends Component {
                                 category,
                                 "timestamp"
                               )}
-                          >
+                          ><i class="material-icons">keyboard_arrow_up</i>
                             Create Date &nbsp;
                             <i className="material-icons md-18">
                               {currentOrderField === "timestamp" && createDateOrder === "ASC" 
-                                && "keyboardarrowdown"}
+                                && "keyboard_arrow_down"}
                               {currentOrderField === "timestamp" && createDateOrder === "DESC" 
-                                && "keyboardarrowup"}
+                                && "keyboard_arrow_up"}
                             </i>
                           </a>
                         </th>

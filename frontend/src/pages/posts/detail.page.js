@@ -170,7 +170,6 @@ class PostsDetailPageComponent extends Component {
 
 
 const mapStateToProps = ({post, id}) => {
-
   return {
     post,
     id

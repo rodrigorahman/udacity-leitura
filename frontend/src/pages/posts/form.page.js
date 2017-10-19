@@ -216,7 +216,6 @@ class PostFormPageComponent extends Component {
   }
 }
 
-
 const mapStateToProps = ({post, id}) => {
   return {}
 };
@@ -226,7 +225,5 @@ const mapDispatchToProps = dispatch => {
     sendMessage: data => dispatch(updateMessage(data))
   };
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostFormPageComponent);

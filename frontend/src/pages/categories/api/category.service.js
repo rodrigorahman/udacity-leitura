@@ -2,7 +2,6 @@ import { API_BASE_URL } from '../../../core/shared.params';
 
 const api = API_BASE_URL;
 
-// Generate a unique token for storing your bookshelf data on the backend server.
 let token = localStorage.token;
 if (!token){
   token = localStorage.token = Math.random()

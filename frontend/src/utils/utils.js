@@ -1,30 +1,24 @@
-class Utils { 
+class Utils {
+  static checkParams(instance, params = "") {
+    let _instance = { ...instance };
+    params.split(".").forEach(p => {
+      _instance = Utils._checkParam(_instance, p);
 
-  static checkParams(instance, params='') {
-    let _instance = {...instance};
-    params.split('.').forEach(p => {
-   
-      _instance = Utils._checkParam(_instance,p)
-
-      if(!_instance) {
+      if (!_instance) {
         return;
       }
-        
-
     });
 
     return _instance;
-    
   }
 
   static _checkParam(instance, param) {
-    try{
+    try {
       return instance[param];
-    } catch(e) {
+    } catch (e) {
       return null;
     }
   }
-
 }
 
 export default Utils;
