@@ -24,7 +24,7 @@ class PostFormPageComponent extends Component {
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     
     this.showLoading();
     getAll().then(cats => this.setState({categories: cats}))

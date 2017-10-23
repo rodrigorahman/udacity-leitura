@@ -22,9 +22,7 @@ export const post = (state = {}, action) => {
         ...post
       };
     case UPDATE_COMMENT_IN_POST:
-      let cIndex = post.comments.findIndex(c => c.id === comment.id);
-      post.comments[cIndex] = comment;
-
+    post.comments = post.comments.filter(c => c.id !== comment.id).concat([comment]);
       return {
         ...post
       };

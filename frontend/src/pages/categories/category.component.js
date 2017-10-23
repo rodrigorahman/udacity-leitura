@@ -124,21 +124,19 @@ class CategoryComponent extends Component {
   };
 
   render() {
-    let categories = Object.keys(this.props.categories);
+    let categories = Object.keys(this.props.categories).filter(c => {
+      let check = true;
+      if (this.props.categoryFilter) {
+        if (this.props.categoryFilter !== c.categoryName) {
+          check = false;
+        }
+      }
+      return check;
+    });
 
     return (
       <div>
-        {categories
-          .filter(c => {
-            let check = true;
-            if (this.props.categoryFilter) {
-              if (this.props.categoryFilter !== c.categoryName) {
-                check = false;
-              }
-            }
-            return check;
-          })
-          .map(c => {
+        {categories.map(c => {
             const category = this.props.categories[c];
             const { currentOrderField, voteScoreOrder, createDateOrder, posts } = category;
             
@@ -200,7 +198,7 @@ class CategoryComponent extends Component {
                                 category,
                                 "timestamp"
                               )}
-                          ><i class="material-icons">keyboard_arrow_up</i>
+                          >
                             Create Date &nbsp;
                             <i className="material-icons md-18">
                               {currentOrderField === "timestamp" && createDateOrder === "ASC" 

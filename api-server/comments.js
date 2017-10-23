@@ -42,6 +42,7 @@ function getByParent (token, parentId) {
   })
 }
 
+
 function get (token, id) {
   return new Promise((res) => {
     const comments = getData(token)
@@ -72,7 +73,7 @@ function add (token, comment) {
   })
 }
 
-function vote (token, id, option) {
+function vote(token, id, option) {
   return new Promise((res) => {
     let comments = getData(token)
     comment = comments[id]

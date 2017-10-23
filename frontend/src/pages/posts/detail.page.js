@@ -25,20 +25,20 @@ class PostsDetailPageComponent extends Component {
     confirmModal: false
   };
 
-  componentWillMount() {
+  componentDidMount = () => {
     
     let { updateStorePost } = this.props;
 
-    this.setState({ loading: true });
+    this.showLoading();
 
     getPostDetail(this.props.match.params.id).then(post => {
       
       updateStorePost(post);
 
-      this.setState({ loading: false });
+      this.hideLoading();
     }).catch((err) => {
       console.error("Erro ao buscar post", err);
-      this.setState({ loading: false });
+      this.hideLoading();
     });
     
     

@@ -109,6 +109,7 @@ export const savePost = post => {
       .catch(err => console.log(err));
   } else {
     post.id = uuidv1();
+    post.timestamp = Date.now();    
     return fetch(`${api}/posts/`, {
       method: "POST",
       headers,

@@ -30,11 +30,7 @@ export class MessageComponent extends React.Component {
   }
 }
 
-const mapStateToProps = ({ message }) => {
-  return {
-    message
-  };
-};
+const mapStateToProps = ({ message }) => ({message});
 
 const mapDispatchToProps = dispatch => {
   return {

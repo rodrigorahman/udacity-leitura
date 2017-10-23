@@ -7,7 +7,7 @@ const defaultData = {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
+    body: 'Aliquip mollit veniam irure officia aliquip commodo culpa culpa. Officia ex reprehenderit quis veniam tempor Lorem duis. Lorem eu cillum pariatur et enim sunt aliquip esse.In minim consectetur duis ex Lorem aliquip voluptate tempor nulla Lorem in occaecat reprehenderit consequat. Magna id irure culpa non deserunt amet ut laboris quis officia anim Lorem. Deserunt sunt deserunt ea minim elit dolore est ad aute nisi nulla laboris. Minim cillum irure adipisicing aliqua cupidatat ipsum laboris. Pariatur eu Lorem adipisicing commodo magna.',
     author: 'thingtwo',
     category: 'react',
     voteScore: 6,

@@ -7,15 +7,27 @@ const defaultData = {
   categories: [
       {
         name: 'react',
-        path: 'react'
+        path: 'react',
+        img: {
+          url: '/images/react.jpeg',
+          name: 'React Category'
+        }
       },
       {
         name: 'redux',
-        path: 'redux'
+        path: 'redux',
+        img: {
+          url: '/images/redux.png',
+          name: 'Redux Category'
+        }
       },
       {
         name: 'udacity',
-        path: 'udacity'
+        path: 'udacity',
+        img: {
+          url: '/images/udacity.png',
+          name: 'Udacity Category'
+        }
       }
   ]
 }
