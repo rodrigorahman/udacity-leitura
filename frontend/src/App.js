@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import PostRouting from "./pages/posts/posts.routing";
 import HomeRouting from "./pages/home/home.routing";
-import CategoriesRouting from './pages/categories/categories.routing';
 
 const App = (props) => {
     return (
@@ -11,7 +10,6 @@ const App = (props) => {
         <div className="row">&nbsp;</div>
           <HomeRouting />
           <PostRouting />
-          <CategoriesRouting />
       </div>
     );
 }

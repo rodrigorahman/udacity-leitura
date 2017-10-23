@@ -16,65 +16,72 @@ import Utils from "../../utils/utils";
 class CategoryComponent extends Component {
 
   static propTypes = {
-    categoryFilter: PropTypes.object,
     history: PropTypes.object.isRequired
   };
 
   state = {
-    loading: false
+    loading: false,
+    categoryFiltered: false
   };
 
+  componentDidMount(){
+    console.log('componentDidMount');
+  }
   componentWillMount() {
     this.setState({
       loading: true
     });
 
+    this.getAllCategories();
+  }
+
+  getAllCategories() {
     getAll()
-      .then(data => {
-        Promise.all(
-          data.map(c => {
-            
-            const categoryFilter = Utils.checkParams(this, "props.match.params.categoryFilter")
+    .then(data => {
+      Promise.all(
+        data.map(c => {
+          
+          const categoryFilter = Utils.checkParams(this, "props.match.params.categoryFilter")
 
-            if (categoryFilter) {
-              if (categoryFilter !== c.name) {
-                return {};
-              }
-            }
-
-            return getPostsByCategory(c.name).then(posts => {
-              c.posts = posts.filter(p => p.deleted === false);
-              return c;
-            });
-          })
-        ).then(cats => {
-          let categories = Object.assign(
-            ...cats.map(c => {
-              if (c) {
-                return {
-                  [c.name]: {
-                    categoryName: c.name,
-                    posts: c.posts,
-                    currentOrderField: null,
-                    voteScoreOrder: "DESC",
-                    createDateOrder: "DESC"
-                  }
-                };
-              }
+          if (categoryFilter) {
+            if (categoryFilter !== c.name) {
               return {};
-            })
-          );
+            }
+          }
 
-          this.props.updateCategoryStore({categories});
-          this.setState({
-            loading: false,
+          return getPostsByCategory(c.name).then(posts => {
+            c.posts = posts.filter(p => p.deleted === false);
+            return c;
           });
+        })
+      ).then(cats => {
+        let categories = Object.assign(
+          ...cats.map(c => {
+            if (c) {
+              return {
+                [c.name]: {
+                  categoryName: c.name,
+                  posts: c.posts,
+                  currentOrderField: null,
+                  voteScoreOrder: "DESC",
+                  createDateOrder: "DESC"
+                }
+              };
+            }
+            return {};
+          })
+        );
+
+        this.props.updateCategoryStore({categories});
+        this.setState({
+          loading: false,
         });
-      })
-      .catch(e => {
-        console.error("erro ao consultar categorias", e);
-        this.setState({ loading: false });
       });
+    })
+    .catch(e => {
+      console.error("erro ao consultar categorias", e);
+      this.setState({ loading: false });
+    });
   }
 
   inverterOrder(order, field) {
@@ -123,38 +130,41 @@ class CategoryComponent extends Component {
     });
   };
 
-  render() {
-    let categories = Object.keys(this.props.categories).filter(c => {
-      let check = true;
-      if (this.props.categoryFilter) {
-        if (this.props.categoryFilter !== c.categoryName) {
-          check = false;
-        }
-      }
-      return check;
-    });
 
+  filterCategory = (categoryFilter) => {
+    this.props.updateCategoryStore({
+      categories: [categoryFilter]
+    });
+    this.setState({categoryFiltered: true});
+  }
+
+  render() {
     return (
       <div>
-        {categories.map(c => {
+        {Object.keys(this.props.categories).map(c => {
             const category = this.props.categories[c];
-            const { currentOrderField, voteScoreOrder, createDateOrder, posts } = category;
+            const { categoryName, currentOrderField, voteScoreOrder, createDateOrder, posts } = category;
             
-            return (<div key={c}>
+            return (<div key={categoryName}>
               <div className="row">
                 <hr width="100%" />
               </div>
               <div className="row">
                 <div className="col">
-                  <h3>
-                    <Link to={`/categories/${c}`}>{c.toUpperCase()}</Link>
+                  <h3 className='mouseHands'>
+                    <button className='btn btn-link' style={{
+                      'font-size': '1em'
+                    }} onClick={() => this.filterCategory(category)}>
+                      {categoryName.toUpperCase()}
+                    </button>
+                    {/* <Link refresh={true} to={`/categories/${categoryName}`}>{categoryName.toUpperCase()}</Link> */}
                   </h3>
                 </div>
-                <div className="col d-flex justify-content-end">
+                <div className="col d-flex justify-content-end mouseHands">
                   <button
                     type="button"
                     className="btn btn-outline-success btn-sm "
-                    onClick={() => this.props.history.push(`/${c}/posts/create/`)}
+                    onClick={() => this.props.history.push(`/${categoryName}/posts/create/`)}
                   >
                     <i className="material-icons md-18">
                       addcircleoutline
@@ -211,7 +221,7 @@ class CategoryComponent extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {posts.length === 0 && (
+                      {!posts || posts.length === 0 && (
                         <tr>
                           <td colSpan="3">No posts yet</td>
                         </tr>
@@ -221,7 +231,7 @@ class CategoryComponent extends Component {
                             key={p.id}
                             className="mouseHands"
                             onClick={() =>
-                              this.props.history.push(`${c}/post/${p.id}`)}
+                              this.props.history.push(`/${categoryName}/post/${p.id}`)}
                           >
                             <td width="50%">{p.title}</td>
                             <td width="25%" className="text-center">
@@ -240,15 +250,12 @@ class CategoryComponent extends Component {
                 <div className="col text-right" />
               </div>
 
-              {Utils.checkParams(
-                this,
-                "props.match.params.categoryFilter"
-              ) && (
+              {this.state.categoryFiltered && (
                 <div className="row d-flex justify-content-end">
                   <button
                     type="submit"
-                    className="btn btn-md  btn-primary "
-                    onClick={() => this.props.history.push("/")}
+                    className="btn btn-md  btn-primary mouseHands"
+                    onClick={() => this.getAllCategories()}
                   >
                     Voltar
                   </button>&nbsp;
@@ -267,7 +274,7 @@ const mapStateToProps = ({categories}) => {
   
   return {
     categories: {
-      ...categories
+      ...categories,
     }
   };
 };

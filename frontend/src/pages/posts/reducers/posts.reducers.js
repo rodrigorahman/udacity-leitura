@@ -27,7 +27,7 @@ export const post = (state = {}, action) => {
         ...post
       };
     case REMOVE_COMMENT_IN_POST:
-      let removeIndex = post.comments.findIndex(c => c.id === comment.id);
+      const removeIndex = post.comments.findIndex(c => c.id === comment.id);
       post.comments.splice(removeIndex, 1);
       return {
         ...post
